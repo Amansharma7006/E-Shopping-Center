@@ -1,0 +1,133 @@
+{%extends "base.html"%}
+    <!-- Header Section End -->
+{%load static%}
+{%load cart_template_tags%}
+{%block content%}
+
+    <!-- Header Section End -->
+
+    <!-- Listing Section Begin -->
+    <section class="listing-hero set-bg" data-setbg="{% static 'img/listing/details/listing-hero.jpg'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="listing__hero__option">
+                        <div class="listing__hero__icon">
+                            <img src="img/listing/details/ld-icon.png" alt="">
+                        </div>
+                        <div class="listing__hero__text">
+                        {%for cat in object.category.all %}
+                            <h3 style="color:red">{{cat}}</h3>
+                        {%endfor%}
+                            <div class="listing__hero__widget">
+                                <div class="listing__hero__widget__rating">
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star"></span>
+                                    <span class="icon_star-half_alt"></span>
+                                </div>
+                                <div>120 Review</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 ">
+                    <div class="listing__hero__btns">
+                      <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 ml-1 p" >Add to cart
+              <i class="fa fa-cart-plus ml-1" aria-hidden="true"></i>
+            </a>
+            <a href="/" class="btn btn-success btn-md ml-2 p" >Continue Shopping
+            <i class="fa fa-info-circle ml-1" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Listing Section End -->
+
+    <!-- Listing Details Section Begin -->
+    <section class="listing-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="listing__details__text">
+                        <div class="listing__details__about">
+                            <h4>Overview</h4>
+                            <p>{{object.description}}</p>
+                        </div>
+                        <div class="listing__details__gallery">
+                            <h4>Your Product</h4>
+                            <div class="listing__details__gallery__pic">
+                                <div class="listing__details__gallery__item">
+                                    <img class="listing__details__gallery__item__large"
+                                        src="{{object.image.url}}" alt="" height="600" width="200">
+                                    <span><i class="fa fa-camera"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="listing__details__about">
+                          <div class="listing__item__text">
+                            <div class="listing__item__text__inside" style="color:red ">Total Price:<span style="color:black ">
+                              {%if object.discount_price%}
+                                  <span class="mr-1">
+                                    <del>Rs.{{object.price}}</del>
+                                  </span>
+                                  <span>Rs.{{object.discount_price}}</span>
+                                  {%else%}
+                                  <span>Rs.{{object.price}}</span>
+                              {%endif%}
+                              </span>
+                              {%for cat in object.category.all %}
+                              <span style="color:blue"class="float-right">Tag :<span style="color:black "> {{cat}} </span>
+                              </span>
+                              {%endfor%}
+                              <br><br><br><br>
+                              <span class="float-right">
+                                <a href="{{ object.get_add_to_cart_url }}" class="btn btn-primary btn-md my-0 ml-1 p" >Add to cart
+                                <i class="fa fa-cart-plus ml-1" aria-hidden="true"></i></a>
+
+                                <a href="{{ object.get_remove_from_cart_url }}" class="btn btn-danger btn-md ml-1 p" >Remove From cart
+                                <i class="fa fa-minus-circle ml-1" aria-hidden="true"></i></a>
+
+                                <a href="/" class="btn btn-success btn-md ml-2 p" >Continue Shopping
+                                <i class="fa fa-info-circle ml-1" aria-hidden="true"></i></a>
+
+                                <a href="/order_summary" class="btn btn-warning btn-md ml-1 p" >Checkout
+                              <i class="fa fa-money" aria-hidden="true"></i></a>
+                              </span>
+                            </div>
+
+                        </div>
+                      </div>
+                      <br><br><br><br>
+
+                    </div>
+                </div>
+              {% include "order_snippet.html" %}
+            </div>
+        </div>
+    </section>
+    <!-- Listing Details Section End -->
+
+    <!-- Newslatter Section Begin -->
+    <section class="newslatter">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="newslatter__text">
+                        <h3>Subscribe Newsletter</h3>
+                        <p>Subscribe to our newsletter and don’t miss anything</p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <form action="#" class="newslatter__form">
+                        <input type="text" placeholder="Your email">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Newslatter Section End -->
+{%endblock content%}

@@ -1,0 +1,40 @@
+{%extends "base.html"%}
+    <!-- Header Section End -->
+{%load static%}
+{%block content%}
+    <div class="breadcrumb-area set-bg" data-setbg="{% static 'img/breadcrumb/breadcrumb-normal.jpg'%}">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="breadcrumb__text">
+                        <h2>Order Successfully Placed</h2>
+                        <div class="breadcrumb__option">
+                            <a href="#"><i class="fa fa-home"></i> Home</a>
+                            <span>Order Placed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+      <form  method="post">
+
+
+      <br><br><br><br><br>
+      <h2 style="color:red">Thank You For Shopping With Us..<span style="color:Blue">Your Order Will be delivered soon</span></h2>
+      <center><h1><p style="color:green font-size:15px">HAVE A NICE DAY!!</p></h1></center>
+  <br>
+  <div class="row text-center">
+  <div class="col-md-4">
+  <h2>  <a href="/" class="btn btn-success btn-block btn-lg" >Continue Shopping
+    <i class="fa fa-info-circle ml-1" aria-hidden="true"></i></a></div>
+  <div class="col-md-4">
+  <h2><a href="/" class="btn btn-primary btn-block btn-lg">Visit Home Page <i class="fa fa-home" aria-hidden="true"></i></a></h2>
+  </div>
+<br><br><br><br>
+  </div>
+  </form>
+  </div>
+{%endblock content%}

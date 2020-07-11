@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{%load static%}
+{% block content %}
+<div class="breadcrumb-area set-bg" data-setbg="{% static 'img/breadcrumb/breadcrumb-normal.jpg'%}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>Your Order Summary</h2>
+                    <div class="breadcrumb__option">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Order Summary</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  <!--Main layout-->
+  <main>
+    <div class="container">
+<br><br>
+      <div class="table-responsive text-nowrap">
+  <h1>Order Summary</h1>
+    <table class="table">
+      <thead >
+        <tr >
+          <th scope="col" style="font-size:20px">#</th>
+          <th scope="col" style="font-size:20px">Item Title</th>
+          <th scope="col" style="font-size:20px">Item price</th>
+          <th scope="col" style="font-size:20px">Item Quantity</th>
+          <th scope="col" style="font-size:20px">Total Item price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%for order_item in object.items.all %}
+        <tr>
+          <th scope="row">{{forloop.counter}}</th>
+          <td><b>{{order_item.item.title}}</b></td>
+          <td>₹  {{order_item.item.price}}</td>
+          <td ><a href="{%url 'app1:remove_single_item_from_cart' order_item.item.slug%}"><i class="fa fa-minus-square" aria-hidden="true" style="color:red"></i></a>
+            {{order_item.quantity}}
+            <a href="{%url 'app1:add_to_cart' order_item.item.slug%}"><i class="fa fa-plus-square" aria-hidden="true" style="color:blue"></i></a></td>
+          <td style="font-size:20px"><b>
+            {%if order_item.item.discount_price %}
+                {{order_item.get_total_discount_item_price}}  ₹
+              <span class="badge badge-warning"><b>Total Saved    {{order_item.get_amount_saved}}  ₹</b></span>
+            {%else%}
+                {{order_item.get_total_item_price}}  ₹
+            {% endif %}
+              <a style="color:red" href="{%url 'app1:remove_from_cart' order_item.item.slug%}"><i class="fa fa-trash float-right"  aria-hidden="true"></i></a>
+          </b></td>
+        </tr>
+        {%empty%}
+        <tr>
+          <td colspan="5">Your Cart is Empty</td>
+        </tr>
+        <tr>
+          <td colspan="5 ">
+            <a class="btn btn-primary float-right " href="/">Continue Shopping</a>
+
+          </td>
+        </tr>
+        {%endfor%}
+        {%if object.coupon%}
+        <tr>
+          <td colspan="4"><b>Coupon </b></td>
+          <td ><b>-  {{object.coupon.amount}} ₹ </b></td>
+        </tr>
+        {%endif%}
+        {%if object.get_total%}
+        <tr>
+          <td colspan="4"><b>Total Order</b></td>
+          <td ><b>  {{object.get_total}}  ₹</b></td>
+        </tr>
+        <tr>
+          <td colspan="5 ">
+            <a class="btn btn-success float-right ml-2" href="/checkout">Proceed To Checkout</a>
+            <a class="btn btn-primary float-right " href="/">Continue Shopping</a>
+          </td>
+        </tr>
+        {%endif %}
+      </tbody>
+    </table>
+
+  </div>
+
+    </div>
+  </main>
+  <br><br>
+  <!--Main layout-->
+{% endblock content %}

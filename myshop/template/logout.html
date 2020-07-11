@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block content%}
+
+<div class="breadcrumb-area set-bg" data-setbg="{% static 'img/breadcrumb/breadcrumb-normal.jpg'%}">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <div class="breadcrumb__text">
+                    <h2>You Have Been Logged Out</h2>
+                    <div class="breadcrumb__option">
+                        <a href="#"><i class="fa fa-home"></i> Home</a>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	<div class="container">
+
+    <form  method="post">
+
+
+    <br><br><br><br><br>
+		<h2 style="color:red">Thank You For Shopping With Us..<span style="color:Blue">Hope we will See You Soon..!!</span></h2>
+		<center><h1><p style="color:green font-size:15px">HAVE A NICE DAY!!</p></h1></center>
+<br>
+<div class="row text-center">
+<div class="col-md-4">
+<h2><a href="/accounts/login" class="btn btn-danger btn-block btn-lg">Login Again... <i class="fa fa-sign-in" aria-hidden="true"></i></a></h2>
+</div>
+<div class="col-md-4">
+<h2><a href="/" class="btn btn-primary btn-block btn-lg">Visit Home Page <i class="fa fa-home" aria-hidden="true"></i></a></h2>
+</div>
+
+</div>
+</form>
+</div>
+<br><br><br><br><br><br>
+{%endblock content%}

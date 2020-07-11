@@ -1,0 +1,78 @@
+<div class="col-lg-4">
+  <div class="listing__sidebar__working__hours">
+
+      <h4>Dilivery Hours</h4>
+      <ul>
+          <li>Monday <span>09:00 AM - 20:00 PM</span></li>
+          <li>Tuesday <span>09:00 AM - 20:00 PM</span></li>
+          <li>Wednesday <span>09:00 AM - 20:00 PM</span></li>
+          <li>Thursday <span>09:00 AM - 20:00 PM</span></li>
+          <li>Friday <span class="opening">Opening</span></li>
+          <li>Saturday <span>09:00 AM - 20:00 PM</span></li>
+          <li>Saturday <span class="closed">Closed</span></li>
+      </ul>
+  </div>
+  <br>
+  <h4><span class=""><b>Your cart</b></span>
+  <span class="badge badge-primary badge-pill float-right">{{ order.items.count }}</span></h4>
+  <br>
+  <h5><span><b>Use Promo Code for :</b> </span>
+  <span><b style="color:red">FIRST_TIMER</b></span></h5>
+  <br>
+    <div class="listing__sidebar">
+
+        <div class="listing__sidebar__contact">
+            <div class="listing__sidebar__contact__map">
+              <h4 style="color:purple"><b>Order Items</b></h4>
+              <br>
+              <ul>
+                {% for order_item in order.items.all %}
+                <li class="">
+                    <div>
+                      <span ><h5 class="my-0" style="color:black">{{ order_item.quantity }} x {{ order_item.item.title}}</h5>
+
+                    <h5><small class="" style="color:green">{{ order_item.item.description}}</small></h5>
+                    </span></div>
+                    <h4 ><span class="float-right" style="color:brown"> Rs.{{ order_item.get_final_price }}</span></h4>
+                </li>
+                {% endfor %}
+              </ul>
+
+              {% if order.coupon %}
+              <li class="">
+                  <div class="text-success">
+                  <h3 class="my-0">Promo code</h3>
+                <h4>  <small class="float-right">{{ order.coupon.code }}</small></h4>
+                  </div><br>
+                <h4> <span class="text-success float-right">-Rs.{{ order.coupon.amount }}</span></h4>
+              </li>
+              {% endif %}
+
+              <li class="">
+                <h4><span>Total (INR)</span></h4>
+                <h4>  <strong class="">RS.{{ order.get_total }}</strong></h4>
+              </li>
+              <br>
+
+              {% if DISPLAY_COUPON_FORM %}
+              <form class="card p-2" action="{% url 'app1:add_coupon' %}" method="POST">
+                  {% csrf_token %}
+                  <div class="input-group">
+                      {{ couponform.code }}
+                      <div class="input-group-append">
+                      <button class="btn btn-success btn-md waves-effect m-0" type="submit">Redeem</button>
+                      </div>
+                  </div>
+              </form>
+              {% endif %}
+            </div>
+
+        </div>
+        <br><br><br><br><br>
+
+
+
+
+    </div>
+
+</div>
